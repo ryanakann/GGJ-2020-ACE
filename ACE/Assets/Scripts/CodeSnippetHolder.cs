@@ -10,6 +10,7 @@ public class CodeSnippetHolder : MonoBehaviour {
     public Code code;
     public CodeSnippet snippet;
     public string eventName;
+    public int tabCount;
 
     private void Start () {
         SubscribeToEvent();
@@ -28,5 +29,9 @@ public class CodeSnippetHolder : MonoBehaviour {
 
     public void UnsubscribeFromEvent () {
         code.entity.eventMap[eventName].RemoveListener(OnEvent);
+    }
+
+    public void SetSize (float height = 40) {
+        RectTransform rectTransform = GetComponent<RectTransform>();
     }
 }

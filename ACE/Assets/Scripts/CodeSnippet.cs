@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CodeSnippet : MonoBehaviour {
-    public string displayName;
+    public string displayText;
     public string methodName;
+    public bool interactible;
 }
