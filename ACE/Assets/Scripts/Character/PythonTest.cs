@@ -18,6 +18,7 @@ public class PythonTest : MonoBehaviour
 import sys
 print 'Hello {}! Python version: {}'.format(name, sys.version)
 print repr(this.s), this.x
+print this.GetComponent('Transform')
 str = 'output'
 ";
 
@@ -25,9 +26,9 @@ str = 'output'
         try
         {
             source.Execute(scope);
-        } catch (Microsoft.Scripting.SyntaxErrorException)
+        } catch (Microsoft.Scripting.SyntaxErrorException e)
         {
-            Debug.LogError("Syntax Error!");
+            Debug.LogError(e);
         } catch (System.Exception e)
         {
             Debug.LogError(e);
