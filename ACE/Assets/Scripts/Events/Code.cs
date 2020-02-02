@@ -33,7 +33,7 @@ public class Code : MonoBehaviour {
                 holder = holderObject.GetComponent<CodeSnippetHolder>();
                 holder.interactible = true;
                 holderObject.GetComponent<Canvas>().sortingOrder = sortingOrder;
-                print("New sorting order: " + holderObject.GetComponent<Canvas>().sortingOrder);
+                //print("New sorting order: " + holderObject.GetComponent<Canvas>().sortingOrder);
                 sortingOrder--;
 
             } else {

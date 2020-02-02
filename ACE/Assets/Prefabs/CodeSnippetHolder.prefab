@@ -438,7 +438,7 @@ MonoBehaviour:
   invokeAtStart: 0
   animationType: 1
   selectedItemIndex: 0
-  saveSelected: 1
+  saveSelected: 0
   dropdownTag: Dropdown
   dropdownItems:
   - itemName: MoveRight();

@@ -264,6 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8940186513145261993}
   - component: {fileID: 8940186513145261990}
+  - component: {fileID: 1188793111}
   m_Layer: 0
   m_Name: Console
   m_TagString: Untagged
@@ -338,6 +339,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1188793111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940186513145261991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a372a1ebe0e6484da3c372b13d503ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpText: {fileID: 8987522751442185774}
 --- !u!1 &8940186513668140243
 GameObject:
   m_ObjectHideFlags: 0

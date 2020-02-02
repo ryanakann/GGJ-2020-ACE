@@ -8,27 +8,36 @@ public class Player : Entity {
     public float jumpSpeed = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+    public float moveX;
+
+    public bool grounded;
 
     Rigidbody2D rb;
     Collider2D col;
     SpriteRenderer sr;
+    Animator anim;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     protected override void Update () {
         base.Update();
         rb.velocity = new Vector2(0, rb.velocity.y);
+        moveX = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(moveX) < 0.1f) moveX = 0f;
+        anim.SetFloat("moveX", moveX);
 
-        if (Input.GetAxisRaw("Horizontal") > 0) {
+        if (moveX > 0) {
             holdRightEvent.Invoke();
-        } else if (Input.GetAxisRaw("Horizontal") < 0) {
+        } else if (moveX < 0) {
             holdLeftEvent.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
+            anim.SetTrigger("Jump");
             pressSpaceEvent.Invoke();
         }
     }
