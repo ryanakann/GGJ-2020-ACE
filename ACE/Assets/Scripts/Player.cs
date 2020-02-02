@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : Entity {
-    public float speed = 2f;
+    public float speed = 4f;
     public float jumpSpeed = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float moveX;
-
-    public bool grounded;
 
     Rigidbody2D rb;
     Collider2D col;

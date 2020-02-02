@@ -59,7 +59,8 @@ MonoBehaviour:
   collideWithPlayerEvent:
     m_PersistentCalls:
       m_Calls: []
-  speed: 2
+  speed: 4
   jumpSpeed: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  moveX: 0
