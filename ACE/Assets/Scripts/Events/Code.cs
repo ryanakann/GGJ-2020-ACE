@@ -14,7 +14,7 @@ public class Code : MonoBehaviour {
     public GameObject codeSnippetPrefab;
     public List<CodeSnippetHolder> snippetHolders;
 
-    private void Start () {
+    private void Awake() {
         snippetHolders = new List<CodeSnippetHolder>();
         ParseText();
     }

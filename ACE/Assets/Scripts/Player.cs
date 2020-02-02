@@ -4,44 +4,55 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : Entity {
-    protected override void Awake () {
-        base.Awake();
+    public float speed = 2f;
+    public float jumpSpeed = 10f;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
+    Rigidbody2D rb;
+    Collider2D col;
+    SpriteRenderer sr;
+
+    void Start () {
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     protected override void Update () {
         base.Update();
+        rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (Input.GetAxisRaw("Horizontal") > 0) {
-            print("Press right");
-            //print(holdRightEvent.ToString());
             holdRightEvent.Invoke();
         } else if (Input.GetAxisRaw("Horizontal") < 0) {
-            print("Press left");
-            //print(holdLeftEvent.ToString());
             holdLeftEvent.Invoke();
-        } else {
-
         }
-
         if (Input.GetKeyDown(KeyCode.Space)) {
-            print("Press space");
             pressSpaceEvent.Invoke();
         }
-        
     }
 
     public void MoveLeft () {
         print("Moving left");
-        transform.position += Vector3.left * Time.deltaTime;
+        sr.flipX = true;
+        rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
     public void MoveRight () {
         print("Moving right");
-        transform.position += Vector3.right * Time.deltaTime;
+        sr.flipX = false;
+        rb.velocity = new Vector2(speed, rb.velocity.y);
     }
 
     public void Jump () {
         print("Jumping");
-        transform.position += Vector3.up * 2;
+        var hit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0,
+            Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        if (hit.collider != null) {
+            //print("on ground");
+            rb.velocity = Vector2.up * jumpSpeed;
+        }
+        //else print("off ground");
     }
 }
