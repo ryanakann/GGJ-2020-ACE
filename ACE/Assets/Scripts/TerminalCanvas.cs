@@ -20,13 +20,5 @@ public class TerminalCanvas : MonoBehaviour {
 
     private void Update () {
         active = animator.GetCurrentAnimatorStateInfo(0).IsName("Opened");
-
-        if (Input.GetKeyDown(KeyCode.C)) {
-            if (active) {
-                Close();
-            } else {
-                Open();
-            }
-        }
     }
 }

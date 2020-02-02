@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
         } else {
             instance = this;
         }
+
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
     }
 
     public static void Pause () {

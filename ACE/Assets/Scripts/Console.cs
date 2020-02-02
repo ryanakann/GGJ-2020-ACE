@@ -12,32 +12,16 @@ public class Console : MonoBehaviour {
         print("Primed: " + primed + " | Active: " + terminalCanvas.active);
         if (Input.GetKeyDown(KeyCode.Return)) {
             if (primed && !terminalCanvas.active) {
+                helpText.SetText("Press 'Enter' to exit terminal");
                 terminalCanvas.Open();
             } else if (terminalCanvas.active) {
-                terminalCanvas.Close();
-            }
-        }
-    }
-
-    private void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            helpText.gameObject.SetActive(true);
-            primed = true;
-        }
-    }
-
-    private void OnCollisionExit2D (Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            helpText.gameObject.SetActive(false);
-            primed = false;
-            if (terminalCanvas.active) {
+                helpText.SetText("Press 'Enter' to enter terminal");
                 terminalCanvas.Close();
             }
         }
     }
 
     private void OnTriggerEnter2D (Collider2D collision) {
-        print("I am friend dog");
         if (collision.CompareTag("Player")) {
             helpText.gameObject.SetActive(true);
             primed = true;
