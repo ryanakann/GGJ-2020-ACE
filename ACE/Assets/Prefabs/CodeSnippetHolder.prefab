@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 5990891020720504432}
   - component: {fileID: -279213584377681608}
   - component: {fileID: 2845687328147561888}
+  - component: {fileID: -8923796574250136095}
   m_Layer: 5
   m_Name: CodeSnippetHolder
   m_TagString: Untagged
@@ -576,8 +577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactible: 0
   code: {fileID: 0}
-  snippet: {fileID: 0}
   eventName: 
+  methodName: 
   tabCount: 0
 --- !u!223 &5990891020720504432
 Canvas:
@@ -639,6 +640,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-8923796574250136095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4399492362890854716}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b17b28309fa14d6a9efb4a178ac798f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 4399492362890854712}
 --- !u!1 &4399492363041644063
 GameObject:
   m_ObjectHideFlags: 0

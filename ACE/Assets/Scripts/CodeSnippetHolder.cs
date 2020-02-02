@@ -60,7 +60,7 @@ public class CodeSnippetHolder : MonoBehaviour {
 
     public void SetText (string text) {
         if (interactible) {
-            GetComponent<Canvas>().sortingOrder = transform.parent.childCount - transform.GetSiblingIndex();
+            //GetComponent<Canvas>().sortingOrder = transform.parent.childCount - transform.GetSiblingIndex();
         } else {
             gameObject.GetComponentInChildren<TMPro.TMP_Text>().SetText(text);
         }

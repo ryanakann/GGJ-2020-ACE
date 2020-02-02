@@ -24,6 +24,7 @@ public class Code : MonoBehaviour {
                                 new[] { "\r\n", "\r", "\n" },
                                 StringSplitOptions.None
                                 );
+        int sortingOrder = 1000;
         foreach(string line in lines) {
             GameObject holderObject;
             CodeSnippetHolder holder;
@@ -31,12 +32,17 @@ public class Code : MonoBehaviour {
                 holderObject = Instantiate(codeSnippetHolderPrefab, transform);
                 holder = holderObject.GetComponent<CodeSnippetHolder>();
                 holder.interactible = true;
+                holderObject.GetComponent<Canvas>().sortingOrder = sortingOrder;
+                print("New sorting order: " + holderObject.GetComponent<Canvas>().sortingOrder);
+                sortingOrder--;
+
             } else {
                 holderObject = Instantiate(staticCodeSnippetHolderPrefab, transform);
                 holder = holderObject.GetComponent<CodeSnippetHolder>();
                 holder.interactible = false;
             }
             
+
             snippetHolders.Add(holder);
             holder.code = this;
             holder.tabCount = line.Count(f => f == '\t');
