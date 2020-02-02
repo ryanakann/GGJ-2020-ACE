@@ -13,7 +13,7 @@ public class RoomController : Entity
     }
 
     // Update is called once per frame
-    protected override void Update()
+    public override void Update()
     {
         base.Update();
         Physics2D.gravity = Vector2.up * gravity;

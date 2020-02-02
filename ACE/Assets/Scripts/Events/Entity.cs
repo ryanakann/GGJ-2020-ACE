@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour {
     public UnityEvent pressSpaceEvent;
     public UnityEvent collideWithPlayerEvent;
 
-    protected virtual void Awake () {
+    public virtual void Awake () {
         entityIndex = entities.Count;
         entities.Add(this);
 
@@ -30,8 +30,37 @@ public class Entity : MonoBehaviour {
         };
     }
 
-    protected virtual void Update () {
+    //Called when cannot apply function to entity
+    private void Dud () {
+        print("DUD");
+    }
+
+    public virtual void Update () {
         if (GameManager.IsPaused()) return;
         updateEvent.Invoke();
+    }
+
+    public virtual void MoveLeft () {
+        Dud();
+    }
+
+    public virtual void MoveRight () {
+        Dud();
+    }
+
+    public virtual void Jump () {
+        Dud();
+    }
+
+    public virtual void FlipGravity () {
+        Dud();
+    }
+
+    public virtual void Open () {
+        Dud();
+    }
+
+    public virtual void Close () {
+        Dud();
     }
 }

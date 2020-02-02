@@ -17,14 +17,14 @@ public class Player : Entity {
     SpriteRenderer sr;
     Animator anim;
 
-    void Start () {
+    public override void Awake () {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 
-    protected override void Update () {
+    public override void Update () {
         base.Update();
         rb.velocity = new Vector2(0, rb.velocity.y);
         moveX = Input.GetAxis("Horizontal");
@@ -40,19 +40,19 @@ public class Player : Entity {
         }
     }
 
-    public void MoveLeft () {
+    public override void MoveLeft () {
         anim.SetFloat("moveX", moveX);
         sr.flipX = true;
         rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
-    public void MoveRight () {
+    public override void MoveRight () {
         anim.SetFloat("moveX", moveX);
         sr.flipX = false;
         rb.velocity = new Vector2(speed, rb.velocity.y);
     }
 
-    public void Jump () {
+    public override void Jump () {
         anim.SetTrigger("Jump");
         var hit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0,
             Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
@@ -63,7 +63,7 @@ public class Player : Entity {
         //else print("off ground");
     }
 
-    public void FlipGravity () {
+    public override void FlipGravity () {
         rb.gravityScale *= -1;
         sr.flipY = !sr.flipY;
     }
