@@ -580,6 +580,18 @@ PrefabInstance:
       value: "if hold left:\n\t$holdLeftEvent\nif hold right:\n\t$holdRightEvent\nif
         press space:\n\t$pressSpaceEvent"
       objectReference: {fileID: 0}
+    - target: {fileID: 6574047756623201599, guid: a859144b6bc2f4ab2be36bb7504ba63d,
+        type: 3}
+      propertyPath: codeSnippetHolderPrefab
+      value: 
+      objectReference: {fileID: 4399492362890854716, guid: 2683a4196f3f645cc81c62a957778816,
+        type: 3}
+    - target: {fileID: 6574047756623201599, guid: a859144b6bc2f4ab2be36bb7504ba63d,
+        type: 3}
+      propertyPath: staticCodeSnippetHolderPrefab
+      value: 
+      objectReference: {fileID: 9199522158752658, guid: 2be2df7b4f9e2458f88d88cccffd24e6,
+        type: 3}
     - target: {fileID: 6574047756914915848, guid: a859144b6bc2f4ab2be36bb7504ba63d,
         type: 3}
       propertyPath: m_AnchorMin.y

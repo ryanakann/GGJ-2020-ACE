@@ -43,7 +43,7 @@ public class Code : MonoBehaviour {
             holder.SetSize();
             holder.SetText(line.Replace("\t", ""));
             if (holder.interactible) {
-                string eventName = line.Replace("$", "");
+                string eventName = line.Replace("$", "").Replace("\t", "");
                 holder.eventName = eventName;
                 holder.SubscribeToEvent();
             }

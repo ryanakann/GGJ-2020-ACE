@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Reflection;
-using Microsoft.Scripting.Utils;
 
 public class CodeSnippetHolder : MonoBehaviour {
     public bool interactible;
@@ -13,12 +11,9 @@ public class CodeSnippetHolder : MonoBehaviour {
     public string methodName;
     public int tabCount;
 
-    private void Start () {
-        code.entity.Invoke("Jump", 0f);
-    }
-
     public void OnEvent () {
-        code.entity.Invoke("MoveRight", 0f);
+        //print("I AM HERE");
+        code.entity.Invoke(methodName, 0f);
     }
 
     public void ChangeSubscriber(string methodName) {
@@ -32,6 +27,12 @@ public class CodeSnippetHolder : MonoBehaviour {
         if (methodName != "") {
             if (code.entity.eventMap.ContainsKey(eventName)) {
                 code.entity.eventMap[eventName].AddListener(OnEvent);
+            } else {
+                print("Error Subscribing: " + eventName + " not in event map.");
+                print("Valid keys: ");
+                foreach (var key in code.entity.eventMap.Keys) {
+                    print("\t" + key);
+                }
             }
         }
     }
@@ -40,6 +41,12 @@ public class CodeSnippetHolder : MonoBehaviour {
         if (methodName != "") {
             if (code.entity.eventMap.ContainsKey(eventName)) {
                 code.entity.eventMap[eventName].RemoveListener(OnEvent);
+            } else {
+                print("Error Unsubscribing: " + eventName + " not in event map.");
+                print("Valid keys: ");
+                foreach(var key in code.entity.eventMap.Keys) {
+                    print("\t" + key);
+                }
             }
             methodName = "";
         }
