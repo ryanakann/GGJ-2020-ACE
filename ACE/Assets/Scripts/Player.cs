@@ -44,9 +44,4 @@ public class Player : Entity {
         print("Jumping");
         transform.position += Vector3.up * 2;
     }
-
-    private void OnDrawGizmos () {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(transform.position, 2f);
-    }
 }
