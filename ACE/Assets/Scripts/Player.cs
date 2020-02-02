@@ -11,49 +11,48 @@ public class Player : Entity {
 
     Rigidbody2D rb;
     Collider2D col;
+    SpriteRenderer sr;
 
-    protected override void Awake () {
-        base.Awake();
+    void Start () {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     protected override void Update () {
+        base.Update();
         rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (Input.GetAxisRaw("Horizontal") > 0) {
-            print("Press right");
             holdRightEvent.Invoke();
         } else if (Input.GetAxisRaw("Horizontal") < 0) {
-            print("Press left");
             holdLeftEvent.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
-            print("Press space");
             pressSpaceEvent.Invoke();
         }
     }
 
     public void MoveLeft () {
         print("Moving left");
-        GetComponent<SpriteRenderer>().flipX = true;
+        sr.flipX = true;
         rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
     public void MoveRight () {
         print("Moving right");
-        GetComponent<SpriteRenderer>().flipX = false;
+        sr.flipX = false;
         rb.velocity = new Vector2(speed, rb.velocity.y);
     }
 
     public void Jump () {
         print("Jumping");
-        if (Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0,
-            Vector2.down, 0.1f, LayerMask.GetMask("Ground")).collider != null)
-        {
-            print("on ground");
+        var hit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0,
+            Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        if (hit.collider != null) {
+            //print("on ground");
             rb.velocity = Vector2.up * jumpSpeed;
         }
-        else print("off ground");
+        //else print("off ground");
     }
 }

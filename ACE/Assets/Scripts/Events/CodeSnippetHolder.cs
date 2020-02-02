@@ -11,22 +11,23 @@ public class CodeSnippetHolder : MonoBehaviour {
     public CodeSnippet snippet;
     public string eventName;
 
-    private void Start () {
+    private void Start() {
         SubscribeToEvent();
     }
 
-    public void OnEvent () {
-        print("Event: " + eventName);
-        print("Method: " + snippet.methodName);
-        code.entity.Invoke(snippet.methodName, 0f);
+    public void OnEvent() {
+        if (snippet != null) {
+            print("Event: " + eventName);
+            print("Method: " + snippet.methodName);
+            code.entity.Invoke(snippet.methodName, 0f);
+        }
     }
-
 
     public void SubscribeToEvent() {
         code.entity.eventMap[eventName].AddListener(OnEvent);
     }
 
-    public void UnsubscribeFromEvent () {
+    public void UnsubscribeFromEvent() {
         code.entity.eventMap[eventName].RemoveListener(OnEvent);
     }
 }

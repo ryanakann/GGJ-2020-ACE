@@ -6,7 +6,7 @@ public class Code : MonoBehaviour {
     public Entity entity;
     public List<CodeSnippetHolder> snippetHolders;
 
-    private void Start () {
+    private void Awake() {
         snippetHolders = new List<CodeSnippetHolder>();
         foreach (CodeSnippetHolder holder in gameObject.GetComponentsInChildren<CodeSnippetHolder>()) {
             holder.code = this;
