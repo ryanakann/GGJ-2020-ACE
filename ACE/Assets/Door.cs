@@ -19,7 +19,7 @@ public class Door : Entity {
         closed = true;
         closing = false;
         initialPos = transform.position;
-        Open();
+        //Open();
     }
 
     public override void Open () {

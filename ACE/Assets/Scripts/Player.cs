@@ -18,6 +18,7 @@ public class Player : Entity {
     Animator anim;
 
     public override void Awake () {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();

@@ -8,6 +8,10 @@ public class Console : MonoBehaviour {
     public TerminalCanvas terminalCanvas;
     public bool primed = false;
 
+    private void Awake () {
+        helpText.gameObject.SetActive(false);
+    }
+
     private void Update () {
         print("Primed: " + primed + " | Active: " + terminalCanvas.active);
         if (Input.GetKeyDown(KeyCode.Return)) {

@@ -24,6 +24,9 @@ public class CodeSnippetHolder : MonoBehaviour {
 
     public void SubscribeToEvent() {
         if (methodName != "") {
+            print(code);
+            print(code.entity);
+            print(code.entity.eventMap);
             if (code.entity.eventMap.ContainsKey(eventName)) {
                 code.entity.eventMap[eventName].AddListener(OnEvent);
             } else {
