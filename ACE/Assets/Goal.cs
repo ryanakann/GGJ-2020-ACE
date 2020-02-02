@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour {
     private void OnTriggerEnter2D (Collider2D collision) {
-        if (collision.gameObject.GetComponent<Player>()) {
-            //NEXT LEVEL
+        print("WOEFAAGE");
+        if (collision.CompareTag("Player")) {
+            LevelManager.NextLevel();
         }
+    }
+
+    private void OnCollisionEnter2D (Collision2D collision) {
+        print("John madden!");
     }
 }

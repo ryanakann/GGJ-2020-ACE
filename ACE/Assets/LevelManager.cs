@@ -17,11 +17,17 @@ public class LevelManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update () {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            ResetLevel();
+        }
+    }
+
     public static void ResetLevel () {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void NextLevel () {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex+1) % SceneManager.sceneCount);
     }
 }
