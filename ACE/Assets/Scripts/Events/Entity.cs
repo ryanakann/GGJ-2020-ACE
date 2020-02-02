@@ -31,6 +31,7 @@ public class Entity : MonoBehaviour {
     }
 
     protected virtual void Update () {
-       updateEvent.Invoke();
+        if (GameManager.IsPaused()) return;
+        updateEvent.Invoke();
     }
 }
