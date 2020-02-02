@@ -7,31 +7,55 @@ using System.Reflection;
 using Microsoft.Scripting.Utils;
 
 public class CodeSnippetHolder : MonoBehaviour {
+    public bool interactible;
     public Code code;
-    public CodeSnippet snippet;
     public string eventName;
+    public string methodName;
     public int tabCount;
 
     private void Start () {
-        SubscribeToEvent();
+        code.entity.Invoke("Jump", 0f);
     }
 
     public void OnEvent () {
-        print("Event: " + eventName);
-        print("Method: " + snippet.methodName);
-        code.entity.Invoke(snippet.methodName, 0f);
+        code.entity.Invoke("MoveRight", 0f);
+    }
+
+    public void ChangeSubscriber(string methodName) {
+        UnsubscribeFromEvent();
+        this.methodName = methodName;
+        SubscribeToEvent();
     }
 
 
     public void SubscribeToEvent() {
-        code.entity.eventMap[eventName].AddListener(OnEvent);
+        if (methodName != "") {
+            if (code.entity.eventMap.ContainsKey(eventName)) {
+                code.entity.eventMap[eventName].AddListener(OnEvent);
+            }
+        }
     }
 
     public void UnsubscribeFromEvent () {
-        code.entity.eventMap[eventName].RemoveListener(OnEvent);
+        if (methodName != "") {
+            if (code.entity.eventMap.ContainsKey(eventName)) {
+                code.entity.eventMap[eventName].RemoveListener(OnEvent);
+            }
+            methodName = "";
+        }
     }
 
-    public void SetSize (float height = 40) {
+    public void SetSize (float width = 730, float height = 50) {
         RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width - (30 * tabCount));
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+    }
+
+    public void SetText (string text) {
+        if (interactible) {
+            GetComponent<Canvas>().sortingOrder = transform.parent.childCount - transform.GetSiblingIndex();
+        } else {
+            gameObject.GetComponentInChildren<TMPro.TMP_Text>().SetText(text);
+        }
     }
 }

@@ -9,11 +9,15 @@ public class Player : Entity {
     }
 
     protected override void Update () {
+        base.Update();
+
         if (Input.GetAxisRaw("Horizontal") > 0) {
             print("Press right");
+            //print(holdRightEvent.ToString());
             holdRightEvent.Invoke();
         } else if (Input.GetAxisRaw("Horizontal") < 0) {
             print("Press left");
+            //print(holdLeftEvent.ToString());
             holdLeftEvent.Invoke();
         } else {
 
@@ -39,5 +43,10 @@ public class Player : Entity {
     public void Jump () {
         print("Jumping");
         transform.position += Vector3.up * 2;
+    }
+
+    private void OnDrawGizmos () {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(transform.position, 2f);
     }
 }

@@ -104,8 +104,20 @@ namespace Michsky.UI.ModernUIPack
             }
         }
 
+        public void Update () {
+            
+        }
+
         public void SetupDropdown()
         {
+            dropdownItems.Clear();
+            foreach (CodeSnippet snippet in CodeSnippetRegistrar.instance.unlockedSnippets) {
+                Item item = new Item();
+                item.itemName = snippet.displayText;
+                item.itemIcon = null;
+                dropdownItems.Add(item);
+            }
+
             foreach (Transform child in itemParent)
                 GameObject.Destroy(child.gameObject);
 
@@ -154,6 +166,14 @@ namespace Michsky.UI.ModernUIPack
             selectedImage.sprite = dropdownItems[itemIndex].itemIcon;
             selectedText.text = dropdownItems[itemIndex].itemName;
             selectedItemIndex = itemIndex;
+            if (CodeSnippetRegistrar.instance.unlockedSnippets.Count > 0) {
+                if (GetComponent<CodeSnippetHolder>()) {
+                    CodeSnippetHolder snip = GetComponent<CodeSnippetHolder>();
+                    snip.ChangeSubscriber(CodeSnippetRegistrar.instance.unlockedSnippets[selectedItemIndex].methodName);
+                    print(snip.eventName + " now triggers " + snip.methodName);
+                    
+                }
+            }
             // dropdownItems[itemIndex].OnItemSelection.Invoke();
         }
 

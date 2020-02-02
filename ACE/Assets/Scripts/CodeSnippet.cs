@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CodeSnippet : MonoBehaviour {
+[CreateAssetMenu(fileName = "New Code Snippet", menuName = "ScriptableObjects/CodeSnippet", order = 1)]
+public class CodeSnippet : ScriptableObject {
     public string displayText;
     public string methodName;
     public bool interactible;

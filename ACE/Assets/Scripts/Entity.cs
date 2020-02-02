@@ -34,6 +34,6 @@ public class Entity : MonoBehaviour {
     }
 
     protected virtual void Update () {
-
+        if (GameManager.IsPaused()) return;
     }
 }

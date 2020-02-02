@@ -10,6 +10,7 @@ public class Code : MonoBehaviour {
     public string codeText;
     public Entity entity;
     public GameObject codeSnippetHolderPrefab;
+    public GameObject staticCodeSnippetHolderPrefab;
     public GameObject codeSnippetPrefab;
     public List<CodeSnippetHolder> snippetHolders;
 
@@ -23,13 +24,29 @@ public class Code : MonoBehaviour {
                                 new[] { "\r\n", "\r", "\n" },
                                 StringSplitOptions.None
                                 );
-        foreach(var line in lines) {
-            GameObject holderObject = Instantiate(codeSnippetHolderPrefab, transform);
-            CodeSnippetHolder holder = holderObject.GetComponent<CodeSnippetHolder>();
+        foreach(string line in lines) {
+            GameObject holderObject;
+            CodeSnippetHolder holder;
+            if (line.Contains("$")) {
+                holderObject = Instantiate(codeSnippetHolderPrefab, transform);
+                holder = holderObject.GetComponent<CodeSnippetHolder>();
+                holder.interactible = true;
+            } else {
+                holderObject = Instantiate(staticCodeSnippetHolderPrefab, transform);
+                holder = holderObject.GetComponent<CodeSnippetHolder>();
+                holder.interactible = false;
+            }
+            
             snippetHolders.Add(holder);
             holder.code = this;
             holder.tabCount = line.Count(f => f == '\t');
-            print("Tab count: " + holder.tabCount);
+            holder.SetSize();
+            holder.SetText(line.Replace("\t", ""));
+            if (holder.interactible) {
+                string eventName = line.Replace("$", "");
+                holder.eventName = eventName;
+                holder.SubscribeToEvent();
+            }
         }
     }
 }
